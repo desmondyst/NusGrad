@@ -1,7 +1,5 @@
-import AuditTable from "./components/audit-table";
 import LandingPageContent from "./components/content";
 import TrackerForm from "./components/tracker-form";
-import prismadb from "@/lib/prismadb";
 
 const LandingPage = async () => {
     return (

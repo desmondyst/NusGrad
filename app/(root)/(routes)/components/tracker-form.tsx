@@ -14,7 +14,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
+import { useRouter } from 'next/navigation';
 import { useEffect } from "react";
 import useLocalStorage from "@/components/hooks/useLocalStorage";
 
@@ -45,9 +45,12 @@ const TrackerForm = () => {
         }
     }, [savedUserDetails]);
 
+    const router = useRouter();
+
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    const onSubmit = (values: z.infer<typeof formSchema>) => {
         localStorage.addUserDetails(values);
+        router.push('/audit');
     }
 
     return (
