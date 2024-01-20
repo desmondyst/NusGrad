@@ -52,6 +52,55 @@ const useLocalStorage = create(
                     saved_data: withAddedDetails,
                 });
             },
+            // #NOTE: Completed functions not tested, waiting for audit page
+            addCourseCompleted: (newCompletedCourse, AY, semester) => {
+                const currentSavedData = get().saved_data;
+                const currentSavedCompletedCourses =
+                    currentSavedData["Completed"];
+                const updatedSemester = [
+                    ...currentSavedCompletedCourses[AY][semester],
+                    newCompletedCourse,
+                ];
+                const withAddedDetails = {
+                    ...currentSavedData,
+                    ["Completed"]: {
+                        ...currentSavedData["Completed"],
+                        [AY]: {
+                            ...currentSavedData["Completed"][AY],
+                            [semester]: updatedSemester,
+                        },
+                    },
+                };
+                set({
+                    saved_data: withAddedDetails,
+                });
+            },
+
+            // #NOTE: Completed functions not tested, waiting for audit page
+            removeCourseCompleted: (completedToRemove, AY, semester) => {
+                const currentSavedData = get().saved_data;
+                const currentSavedCompletedCourses =
+                    currentSavedData["Completed"];
+
+                const updatedSemester = currentSavedCompletedCourses[AY][
+                    semester
+                ].filter((c) => c != completedToRemove);
+
+                const updatedDetails = {
+                    ...currentSavedData,
+                    ["Completed"]: {
+                        ...currentSavedData["Completed"],
+                        [AY]: {
+                            ...currentSavedData["Completed"][AY],
+                            [semester]: updatedSemester,
+                        },
+                    },
+                };
+                set({
+                    saved_data: updatedDetails,
+                });
+            },
+
             addCoursePending: (newPendingCourse, AY, semester) => {
                 const currentSavedData = get().saved_data;
                 const currentSavedPendingCourses = currentSavedData["Pending"];
@@ -77,8 +126,7 @@ const useLocalStorage = create(
             removeCoursePending: (pendingToRemove, AY, semester) => {
                 const currentSavedData = get().saved_data;
                 const currentSavedPendingCourses = currentSavedData["Pending"];
-                console.log(AY);
-                console.log(currentSavedPendingCourses[AY]);
+
                 const updatedSemester = currentSavedPendingCourses[AY][
                     semester
                 ].filter((c) => c != pendingToRemove);
@@ -95,6 +143,79 @@ const useLocalStorage = create(
                 };
                 set({
                     saved_data: updatedDetails,
+                });
+            },
+
+            addYear: () => {
+                const currentSavedData = get().saved_data;
+                // 2021/2022 Normal Intake
+
+                const startingYear = currentSavedData["userDetails"][
+                    "intake"
+                ].substring(0, 4);
+
+                // last stored year
+                const lastYearKeyInString = Object.keys(
+                    currentSavedData["Completed"]
+                )
+                    .sort()
+                    .pop();
+
+                const lastYear = parseInt(
+                    lastYearKeyInString?.slice(3, 7) ?? startingYear
+                );
+
+                const nextYear = `AY ${lastYear + 1} / ${lastYear + 2}`;
+
+                const withAddedYear = {
+                    ...currentSavedData,
+                    ["Completed"]: {
+                        ...currentSavedData["Completed"],
+                        [nextYear]: {
+                            "Semester 1": [],
+                            "Semester 2": [],
+                        },
+                    },
+
+                    ["Pending"]: {
+                        ...currentSavedData["Pending"],
+                        [nextYear]: {
+                            "Semester 1": [],
+                            "Semester 2": [],
+                        },
+                    },
+                };
+                set({
+                    saved_data: withAddedYear,
+                });
+            },
+
+            removeYear: (year) => {
+                const currentSavedData = get().saved_data;
+                const currentSavedCompletedCourses =
+                    currentSavedData["Completed"];
+
+                const completedWithYearRemoved = {
+                    ...currentSavedCompletedCourses,
+                };
+                delete completedWithYearRemoved[year];
+
+                const currentSavedPendingCourses = currentSavedData["Pending"];
+                const pendingWithYearRemoved = {
+                    ...currentSavedPendingCourses,
+                };
+
+                delete pendingWithYearRemoved[year];
+
+                const withYearRemoved = {
+                    ...currentSavedData,
+                    ["Completed"]: completedWithYearRemoved,
+
+                    ["Pending"]: pendingWithYearRemoved,
+                };
+
+                set({
+                    saved_data: withYearRemoved,
                 });
             },
         }),

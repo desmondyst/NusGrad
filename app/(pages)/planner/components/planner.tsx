@@ -42,9 +42,6 @@ const Planner = () => {
         },
     };
 
-    const { courses, addCourse, addNewYear, removeCourse, removeYear } =
-        useCourses(initialCourses);
-
     const localStorage = useLocalStorage();
     const completedCourses = localStorage.saved_data["Completed"];
     const pendingCourses = localStorage.saved_data["Pending"];
@@ -64,7 +61,7 @@ const Planner = () => {
                 <Button
                     type="button"
                     className="bg-orange hover:bg-gray-100 hover:text-black"
-                    onClick={addNewYear}
+                    onClick={localStorage.addYear}
                 >
                     Add next AY
                 </Button>

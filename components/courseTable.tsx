@@ -66,7 +66,7 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
                 <Button
                     type="button"
                     className="text-white rounded-2xl p-2 bg-transparent hover:bg-gray-200 item-right"
-                    onClick={() => removeYear(year)}
+                    onClick={() => localStorage.removeYear(year)}
                 >
                     X
                 </Button>
