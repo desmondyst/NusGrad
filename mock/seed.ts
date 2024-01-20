@@ -47,7 +47,11 @@ async function main() {
     });
     requirements.map(async (req, reqIndex) => {
         const reqData = await prismadb.requirement.create({
-            data: req,
+            data: {
+                id: reqIndex + 1,
+                name: req.name,
+                unitsRequired: req.unitsRequired,
+            },
         });
         switch (req.name) {
             case "Computer Science Foundation":

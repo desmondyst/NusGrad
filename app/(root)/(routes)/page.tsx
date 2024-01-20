@@ -2,7 +2,7 @@
 
 import useLocalStorage from "@/components/hooks/useLocalStorage";
 import LandingPageContent from "./components/content";
-import TrackerForm from "./components/tracker-form";
+import TrackerForm from "./components/trackerForm";
 
 import { redirect, useRouter } from "next/navigation";
 

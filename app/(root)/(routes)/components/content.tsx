@@ -35,7 +35,7 @@ const LandingPageContent = () => {
                         duration={1000}
                         className="hover:text-[#e5e5fb] cursor-pointer"
                     >
-                        <Button className="w-full xl:w-48 rounded-2xl bg-[#FF5138]">
+                        <Button className="w-full xl:w-48 rounded-2xl bg-orange">
                             Get Started
                         </Button>
                     </ScrollLink>
