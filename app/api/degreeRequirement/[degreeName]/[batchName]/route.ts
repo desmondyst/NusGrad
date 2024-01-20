@@ -2,21 +2,23 @@ import prismadb from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 
 export async function GET(
-    req: Request
-    // { params }: { params: { storeId: string } }
+    req: Request,
+    {
+        params,
+    }: {
+        params: { degreeName: string, batchName: string };
+    }
 ) {
     try {
-        const { degreeName, batchName } = req.body;
-
         const degree = await prismadb.degree.findUnique({
             where: {
-                name: degreeName,
+                name: params.degreeName,
             },
         });
 
         const batch = await prismadb.batch.findUnique({
             where: {
-                name: batchName,
+                name: params.batchName,
             },
         });
 

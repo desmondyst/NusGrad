@@ -10,19 +10,11 @@ export default function AuditTable() {
     const batchName = savedUserDetails["intake"];
 
     const [requirementData, setRequirementData] = useState([]);
-    const URL = "http://localhost:3000/api/degreeRequirement";
-
+    const encodedDegreeName = encodeURIComponent(degreeName);
+    const encodedBatchName = encodeURIComponent(batchName);
+    const URL = `http://localhost:3000/api/degreeRequirement/${encodedDegreeName}/${encodedBatchName}`;
     const getDegreeRequirement = async () => {
-        const res = await fetch(URL, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                degreeName: degreeName,
-                batchName: batchName,
-            }),
-        });
+        const res = await fetch(URL);
         return res.json();
     };
 
