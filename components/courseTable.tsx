@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import SelectPopover from "@/components/selectPopover";
 import useLocalStorage from "./hooks/useLocalStorage";
 
-const CourseTable = ({ year, completedForAY, pendingForAY }) => {
+const CourseTable = ({ courses, year, completedForAY, pendingForAY }) => {
     const localStorage = useLocalStorage();
+
+    const coursesCode = courses.map((c) => ({ value: c.code, label: c.code }));
 
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear() % 100;
@@ -117,13 +119,14 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
                                         )}
                                         <div className="text-left py-1">
                                             <SelectPopover
-                                                onClick={() =>
+                                                onClick={(course) => {
                                                     localStorage.addCourseCompleted(
-                                                        "Test",
+                                                        course.toUpperCase(),
                                                         year,
                                                         semester
-                                                    )
-                                                }
+                                                    );
+                                                }}
+                                                coursesCode={coursesCode}
                                             ></SelectPopover>
                                         </div>
                                     </>
@@ -164,13 +167,14 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
                                         )}
                                         <div className="text-left py-1">
                                             <SelectPopover
-                                                onClick={() =>
+                                                onClick={(course) =>
                                                     localStorage.addCoursePending(
-                                                        "Test",
+                                                        course.toUpperCase(),
                                                         year,
                                                         semester
                                                     )
                                                 }
+                                                coursesCode={coursesCode}
                                             ></SelectPopover>
                                         </div>
                                     </>
