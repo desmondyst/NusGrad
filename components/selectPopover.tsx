@@ -1,57 +1,92 @@
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-    PopoverClose,
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  PopoverClose,
 } from "@/components/ui/popover";
 import AddIcon from "../public/orangeAdd.png";
 
-const SelectPopover = ({ onClick }) => {
-    return (
-        <Popover>
-            <PopoverTrigger asChild>
-                <Button
-                    type="button"
-                    className="text-orange rounded-2xl bg-transparent hover:bg-gray-100 whitespace-normal font-bold"
-                >
-                    <Image
-                        className="mr-2"
-                        src={AddIcon}
-                        alt="Audit Report"
-                        height="23"
-                        width="23"
-                    />
-                    Click here to add a course
-                </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-80">
-                <div className="grid gap-4">
-                    <div className="space-y-2">
-                        <h4 className="font-medium leading-none">
-                            Choosing a course for
-                        </h4>
-                        <p className="text-sm text-muted-foreground">
-                            Set the dimensions for the layer.
-                        </p>
-                    </div>
-                    <div className="grid gap-2">
-                        <Button
-                            type="button"
-                            className="text-orange rounded-2xl bg-transparent hover:bg-gray-100"
-                            onClick={onClick}
-                        >
-                            Select Course
-                        </Button>
-                    </div>
+const courses = [
+  {
+    value: "Course 1",
+    label: "Course 1",
+  },
+  {
+    value: "Course 2",
+    label: "Course 2",
+  },
+  {
+    value: "Course 3",
+    label: "Course 3",
+  },
+  // Add more courses as needed
+];
+
+const SelectPopover = ({ onClick, requirement = "Networking and Distributed Systems"  }) => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          type="button"
+          className="text-orange rounded-2xl bg-transparent hover:bg-gray-100 whitespace-normal font-bold"
+        >
+          <Image
+            className="mr-2"
+            src={AddIcon}
+            alt="Audit Report"
+            height="23"
+            width="23"
+          />
+          Click here to add a course
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-1/8 tablet:w-96">
+        <Command className="space-y-2">
+            <div className="text-xs tablet:text-sm text-left">
+                <div className="text-gray-700">Choosing a course for</div>
+                <div className="text-gray-400">{requirement}</div>
+            </div>
+            <CommandInput placeholder="Search course..." />
+            <CommandEmpty>No course found.</CommandEmpty>
+            <CommandGroup>
+              <div className="border border-gray-400 rounded-xl divide-y-2 divide-gray-400">
+                {courses.map((course) => (
+                  <CommandItem
+                      key={course.value}
+                      value={course.value}
+                      className="text-gray-700"
+                      onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      setOpen(false);
+                      onClick(currentValue);
+                      }}
+                  >
+                      {course.label}
+                  </CommandItem>
+                ))}
                 </div>
-                <PopoverClose className="text-orange rounded-2xl bg-transparent hover:bg-gray-100 absolute top-0 right-2 m-3">
-                    X
-                </PopoverClose>
-            </PopoverContent>
-        </Popover>
-    );
+            </CommandGroup>
+            </Command>
+        <PopoverClose className="text-orange rounded-2xl bg-transparent hover:bg-gray-100 absolute top-0 right-2 m-3">
+          X
+        </PopoverClose>
+      </PopoverContent>
+    </Popover>
+  );
 };
 
 export default SelectPopover;
