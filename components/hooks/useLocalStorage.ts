@@ -52,6 +52,51 @@ const useLocalStorage = create(
                     saved_data: withAddedDetails,
                 });
             },
+            addCoursePending: (newPendingCourse, AY, semester) => {
+                const currentSavedData = get().saved_data;
+                const currentSavedPendingCourses = currentSavedData["Pending"];
+                const updatedSemester = [
+                    ...currentSavedPendingCourses[AY][semester],
+                    newPendingCourse,
+                ];
+                const withAddedDetails = {
+                    ...currentSavedData,
+                    ["Pending"]: {
+                        ...currentSavedData["Pending"],
+                        [AY]: {
+                            ...currentSavedData["Pending"][AY],
+                            [semester]: updatedSemester,
+                        },
+                    },
+                };
+                set({
+                    saved_data: withAddedDetails,
+                });
+            },
+
+            removeCoursePending: (pendingToRemove, AY, semester) => {
+                const currentSavedData = get().saved_data;
+                const currentSavedPendingCourses = currentSavedData["Pending"];
+                console.log(AY);
+                console.log(currentSavedPendingCourses[AY]);
+                const updatedSemester = currentSavedPendingCourses[AY][
+                    semester
+                ].filter((c) => c != pendingToRemove);
+
+                const updatedDetails = {
+                    ...currentSavedData,
+                    ["Pending"]: {
+                        ...currentSavedData["Pending"],
+                        [AY]: {
+                            ...currentSavedData["Pending"][AY],
+                            [semester]: updatedSemester,
+                        },
+                    },
+                };
+                set({
+                    saved_data: updatedDetails,
+                });
+            },
         }),
         { name: "stored-data", storage: createJSONStorage(() => localStorage) }
     )

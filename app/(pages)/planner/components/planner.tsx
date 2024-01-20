@@ -49,28 +49,6 @@ const Planner = () => {
     const completedCourses = localStorage.saved_data["Completed"];
     const pendingCourses = localStorage.saved_data["Pending"];
 
-    // for academic_year in completed_courses.keys():
-    // completed_courses[academic_year]["Semester 1"].extend(pending_courses.get(academic_year, {}).get("Semester 1", []))
-
-    // Completed: {
-    //     "AY 2023/2024": {
-    //         "Semester 1": ["Course 1000", "Course 2"],
-    //         "Semester 2": ["Course 3", "Course 4"],
-    //     },
-    //     "AY 2024/2025": {
-    //         "Semester 1": ["Course 5", "Course 6"],
-    //         "Semester 2": ["Course 7", "Course 8"],
-    //     },
-    // },
-    // Pending: {
-    //     "AY 2023/2024": {
-    //         "Semester 1": ["Pending Course 3", "Pending Course 2"],
-    //         "Semester 2": ["Pending Course 3", "Pending Course 4"],
-    //     },
-
-    // console.log(completedCourses);
-    // console.log(pendingCourses);
-
     return (
         <div className="w-full">
             {Object.entries(completedCourses).map(([year]) => (
@@ -79,10 +57,6 @@ const Planner = () => {
                         year={year}
                         completedForAY={completedCourses[year]}
                         pendingForAY={pendingCourses[year]}
-                        // semesters={semesters}
-                        // addCourse={addCourse}
-                        // removeCourse={removeCourse}
-                        // removeYear={removeYear}
                     />
                 </div>
             ))}

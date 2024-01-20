@@ -2,16 +2,12 @@ import React from "react";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import SelectPopover from "@/components/selectPopover";
+import useLocalStorage from "./hooks/useLocalStorage";
 
-const CourseTable = ({
-    year,
-    completedForAY,
-    pendingForAY,
-    // addCourse,
-    // removeCourse,
-    // removeYear,
-}) => {
+const CourseTable = ({ year, completedForAY, pendingForAY }) => {
     console.log(completedForAY);
+
+    const localStorage = useLocalStorage();
 
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear() % 100;
@@ -62,9 +58,6 @@ const CourseTable = ({
             return false;
         }
     };
-
-    console.log(hasPassed("AY 2023/2024", "SEMESTER 2"));
-    console.log(completedForAY);
 
     return (
         <div className="rounded shadow-lg ">
@@ -131,13 +124,13 @@ const CourseTable = ({
                                                         <Button
                                                             type="button"
                                                             className=" text-orange p-3 rounded-full bg-transparent hover:bg-gray-200 item-right"
-                                                            // onClick={() =>
-                                                            //     removeCourse(
-                                                            //         year,
-                                                            //         semester,
-                                                            //         course
-                                                            //     )
-                                                            // }
+                                                            onClick={() =>
+                                                                localStorage.removeCoursePending(
+                                                                    pendingCourse,
+                                                                    year,
+                                                                    semester
+                                                                )
+                                                            }
                                                         >
                                                             X
                                                         </Button>
@@ -145,13 +138,13 @@ const CourseTable = ({
                                                 </TableRow>
                                             )
                                         )}
-                                        <div className="text-left py-1 hover:pl-1">
+                                        <div className="text-left py-1">
                                             <SelectPopover
                                                 onClick={() =>
-                                                    addCourse(
+                                                    localStorage.addCoursePending(
+                                                        "Test",
                                                         year,
-                                                        semester,
-                                                        "New Course"
+                                                        semester
                                                     )
                                                 }
                                             ></SelectPopover>
