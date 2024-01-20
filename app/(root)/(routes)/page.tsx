@@ -1,6 +1,6 @@
 import AuditTable from "@/app/(pages)/audit/components/audit-table";
 import LandingPageContent from "./components/content";
-import TrackerForm from "./components/tracker-form";
+import TrackerForm from "./components/trackerForm";
 
 const LandingPage = async () => {
     return (

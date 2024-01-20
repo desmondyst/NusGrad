@@ -21,15 +21,15 @@ export default async function RequirementTable({ requirement }) {
     );
 
     return (
-        <div className="my-3 rounded shadow-lg" key={requirement.id}>
-            <div className="w-full flex flex-col lg:flex-row justify-between items-center text-base leading-4 font-bold bg-opacity-75 bg-[#FF5138] text-[#4B5563] uppercase tracking-wider px-5 py-3 border-2 border-gray-200">
+        <div className="my-3 rounded shadow-lg pt-4" key={requirement.id}>
+            <div className="w-full flex flex-col lg:flex-row justify-between items-center text-base leading-4 font-bold bg-opacity-75 bg-orange text-[#4B5563] uppercase tracking-wider px-5 py-3 border-2 border-gray-200">
                 {requirement.name}
                 <div className="w-full py-3 lg:w-1/2 lg:my-0">
                     <Progress
-                        indicatorColor="bg-[#3CB371]"
+                        indicatorColor="bg-green-500"
                         value={(4 / requirement.unitsRequired) * 100}
                     />
-                    <div className="mt-2 text-xs">
+                    <div className="mt-2 text-xs flex justify-center">
                         4/{requirement.unitsRequired} units taken
                     </div>
                 </div>
