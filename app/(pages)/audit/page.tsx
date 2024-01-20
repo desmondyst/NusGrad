@@ -1,12 +1,10 @@
-import Header from "@/components/header";
-import SideBar from "@/components/sidebar";
-import LandingPageContent from "../../(root)/(routes)/components/content";
+import AuditTable from "@/app/(root)/(routes)/components/audit-table";
 
 export default function AuditPage() {
     return (
         <div className="h-full flex flex-col ">
             <div className="flex flex-col flex-grow overflow-auto">
-                <LandingPageContent />
+                <AuditTable />
             </div>
         </div>
     );
