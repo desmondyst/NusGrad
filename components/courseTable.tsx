@@ -59,7 +59,7 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
 
     return (
         <div className="rounded shadow-lg ">
-            <div className="w-full flex flex-row justify-between items-center text-md leading-4 font-bold bg-[#FF5138] bg-opacity-75 text-[#4B5563] uppercase tracking-wider px-5 py-3 shadow border-r-2 border-gray-200">
+            <div className="w-full flex flex-row justify-between items-center text-md leading-4 font-bold bg-orange bg-opacity-75 text-[#4B5563] uppercase tracking-wider px-5 py-3 shadow border-r-2 border-gray-200">
                 {year}
                 <Button
                     type="button"
@@ -68,7 +68,6 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
                 >
                     X
                 </Button>
-                {/* )} */}
             </div>
             <div className="flex flex-col lg:flex-row">
                 {Object.entries(completedForAY).map(([semester], index) => (

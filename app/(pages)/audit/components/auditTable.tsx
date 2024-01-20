@@ -20,7 +20,7 @@ export default async function AuditTable() {
     );
 
     return (
-        <div className="w-full">
+        <div className="w-full pt-4">
             {requirementData.map((requirement) => (
                 <RequirementTable
                     key={requirement.id}
