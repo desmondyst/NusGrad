@@ -11,31 +11,9 @@ interface LocalStorage {
 
 const defaultData = {
     userDetails: {},
-    // AllOfCompleted: new Set(),
-    // Completed: {},
-    // Pending: {},
-
     AllOfCompleted: new Set(),
-    Completed: {
-        "AY 2023/2024": {
-            "Semester 1": ["Course 1000", "Course 2"],
-            "Semester 2": ["Course 3", "Course 4"],
-        },
-        "AY 2024/2025": {
-            "Semester 1": ["Course 5", "Course 6"],
-            "Semester 2": ["Course 7", "Course 8"],
-        },
-    },
-    Pending: {
-        "AY 2023/2024": {
-            "Semester 1": ["Pending Course 3", "Pending Course 2"],
-            "Semester 2": ["Pending Course 3", "Pending Course 4"],
-        },
-        "AY 2024/2025": {
-            "Semester 1": ["Pending Course 5", "Pending Course 6"],
-            "Semester 2": ["Pending Course 7", "Pending Course 8"],
-        },
-    },
+    Completed: {},
+    Pending: {},
 };
 
 const useLocalStorage = create(
@@ -161,11 +139,18 @@ const useLocalStorage = create(
                     .sort()
                     .pop();
 
-                const lastYear = parseInt(
-                    lastYearKeyInString?.slice(3, 7) ?? startingYear
+                let lastYear = parseInt(startingYear);
+
+                // last stored year
+                const lastStoredYear = parseInt(
+                    lastYearKeyInString?.slice(3, 7)
                 );
 
-                const nextYear = `AY ${lastYear + 1} / ${lastYear + 2}`;
+                if (lastStoredYear) {
+                    lastYear = lastStoredYear + 1;
+                }
+
+                const nextYear = `AY ${lastYear} / ${lastYear + 1}`;
 
                 const withAddedYear = {
                     ...currentSavedData,

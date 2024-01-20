@@ -5,8 +5,6 @@ import SelectPopover from "@/components/selectPopover";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 const CourseTable = ({ year, completedForAY, pendingForAY }) => {
-    console.log(completedForAY);
-
     const localStorage = useLocalStorage();
 
     const currentDate = new Date();
@@ -70,6 +68,7 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
                 >
                     X
                 </Button>
+                {/* )} */}
             </div>
             <div className="flex flex-col lg:flex-row">
                 {Object.entries(completedForAY).map(([semester], index) => (
@@ -91,7 +90,7 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
                                             ) => (
                                                 <TableRow
                                                     key={completedCourseIndex}
-                                                    className="cursor-not-allowed w-full h-16"
+                                                    className="w-full h-16"
                                                 >
                                                     <TableCell className="text-left w-full">
                                                         <div className="">{`${
@@ -99,9 +98,35 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
                                                             1
                                                         }. ${completedCourse}`}</div>
                                                     </TableCell>
+                                                    <TableCell className="text-right">
+                                                        <Button
+                                                            type="button"
+                                                            className=" text-orange p-3 rounded-full bg-transparent hover:bg-gray-200 item-right"
+                                                            onClick={() =>
+                                                                localStorage.removeCourseCompleted(
+                                                                    completedCourse,
+                                                                    year,
+                                                                    semester
+                                                                )
+                                                            }
+                                                        >
+                                                            X
+                                                        </Button>
+                                                    </TableCell>
                                                 </TableRow>
                                             )
                                         )}
+                                        <div className="text-left py-1">
+                                            <SelectPopover
+                                                onClick={() =>
+                                                    localStorage.addCourseCompleted(
+                                                        "Test",
+                                                        year,
+                                                        semester
+                                                    )
+                                                }
+                                            ></SelectPopover>
+                                        </div>
                                     </>
                                 ) : (
                                     <>
