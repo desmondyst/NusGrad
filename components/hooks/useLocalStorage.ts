@@ -161,11 +161,18 @@ const useLocalStorage = create(
                     .sort()
                     .pop();
 
-                const lastYear = parseInt(
-                    lastYearKeyInString?.slice(3, 7) ?? startingYear
+                let lastYear = parseInt(startingYear);
+
+                // last stored year
+                const lastStoredYear = parseInt(
+                    lastYearKeyInString?.slice(3, 7)
                 );
 
-                const nextYear = `AY ${lastYear + 1} / ${lastYear + 2}`;
+                if (lastStoredYear) {
+                    lastYear = lastStoredYear + 1;
+                }
+
+                const nextYear = `AY ${lastYear} / ${lastYear + 1}`;
 
                 const withAddedYear = {
                     ...currentSavedData,
