@@ -5,8 +5,6 @@ import SelectPopover from "@/components/selectPopover";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 const CourseTable = ({ year, completedForAY, pendingForAY }) => {
-    console.log(completedForAY);
-
     const localStorage = useLocalStorage();
 
     const currentDate = new Date();
@@ -59,19 +57,10 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
         }
     };
 
-    // const isAYDeletable = (year) => {
-    //     if (hasPassed(year, "Semester 1") || hasPassed(year, "Semester 2")) {
-    //         return false;
-    //     } else {
-    //         return true;
-    //     }
-    // };
-
     return (
         <div className="rounded shadow-lg ">
             <div className="w-full flex flex-row justify-between items-center text-md leading-4 font-bold bg-[#FF5138] bg-opacity-75 text-[#4B5563] uppercase tracking-wider px-5 py-3 shadow border-r-2 border-gray-200">
                 {year}
-                {/* {isAYDeletable(year) && ( */}
                 <Button
                     type="button"
                     className="text-white rounded-2xl p-2 bg-transparent hover:bg-gray-200 item-right"
