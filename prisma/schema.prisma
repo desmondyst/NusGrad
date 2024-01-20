@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,6 +7,7 @@ datasource db {
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
   relationMode = "prisma"
 }
+
 
 // Schema Definition for Requirements Draft 1 (Missing onDELETE and onUPDATE actions for now)
 
@@ -40,17 +38,18 @@ model DegreeWithBatch {
   @@unique([degreeId, batchId])
 }
 
+
 model DegreeRequirement {
   id Int @id @default(autoincrement())
   degreeWithBatchId Int
   degreeWithBatch DegreeWithBatch @relation(fields: [degreeWithBatchId], references: [id])
-  requirementCourseId Int
-  requirementCourse RequirementCourse @relation(fields: [requirementCourseId], references: [id])
+  requirementId Int
+  requirement Requirement @relation(fields: [requirementId], references: [id])
 
   @@index([degreeWithBatchId])
-  @@index([requirementCourseId])
+  @@index([requirementId])
 
-  @@unique([degreeWithBatchId, requirementCourseId])
+  @@unique([degreeWithBatchId, requirementId])
 }
 
 model RequirementCourse {
@@ -59,7 +58,6 @@ model RequirementCourse {
   requirement Requirement @relation(fields: [requirementId], references: [id])
   courseId Int
   course Course @relation(fields: [courseId], references: [id])
-  degreeRequirements DegreeRequirement[]
 
   @@index([requirementId])
   @@index([courseId])
@@ -74,6 +72,7 @@ model RequirementCourse {
 model Requirement {
   id Int @id @default(autoincrement())
   name String @unique
+  degrees DegreeRequirement[]
   courses RequirementCourse[]
 }
 
@@ -88,6 +87,4 @@ model Course {
   type String // Computing
   level Int // 1000
 }
-
-
 
