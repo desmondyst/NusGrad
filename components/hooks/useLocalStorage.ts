@@ -11,7 +11,7 @@ interface LocalStorage {
 
 const defaultData = {
     userDetails: {},
-    AllOfCompleted: new Set(),
+    AllOfCompleted: [],
     Completed: {},
     Pending: {},
 };
@@ -30,6 +30,15 @@ const useLocalStorage = create(
                     saved_data: withAddedDetails,
                 });
             },
+            containCourseCompleted: (completedCourse) => {
+                const currentSavedData = get().saved_data;
+                const con =
+                    currentSavedData["AllOfCompleted"].indexOf(completedCourse);
+                if (con > -1) {
+                    return true;
+                }
+                return false;
+            },
             // #NOTE: Completed functions not tested, waiting for audit page
             addCourseCompleted: (newCompletedCourse, AY, semester) => {
                 const currentSavedData = get().saved_data;
@@ -39,6 +48,7 @@ const useLocalStorage = create(
                     ...currentSavedCompletedCourses[AY][semester],
                     newCompletedCourse,
                 ];
+                currentSavedData["AllOfCompleted"].push(newCompletedCourse);
                 const withAddedDetails = {
                     ...currentSavedData,
                     ["Completed"]: {
@@ -59,6 +69,11 @@ const useLocalStorage = create(
                 const currentSavedData = get().saved_data;
                 const currentSavedCompletedCourses =
                     currentSavedData["Completed"];
+                const index =
+                    currentSavedData["AllOfCompleted"].indexOf(
+                        completedToRemove
+                    );
+                currentSavedData["AllOfCompleted"].splice(index, 1);
 
                 const updatedSemester = currentSavedCompletedCourses[AY][
                     semester

@@ -4,15 +4,29 @@ import { Progress } from "../../../../components/ui/progress";
 import SelectPopover from "../../../../components/selectPopover";
 import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-export default function RequirementTable({ requirement }) {
+export default function RequirementTable({ requirement, localStorage }) {
     const [courseData, setCourseData] = useState([]);
-
+    const [units, setUnits] = useState(0);
     const URL = `http://localhost:3000/api/requirementCourse/${requirement.id}`;
     useEffect(() => {
         fetch(URL)
             .then((response) => response.json())
-            .then((data) => setCourseData(data));
+            .then((data) => {
+                setCourseData(data);
+            });
     }, [requirement]);
+
+    useEffect(() => {
+        setUnits(
+            courseData.reduce((accumulator, currentValue) => {
+                if (localStorage.containCourseCompleted(currentValue.code)) {
+                    return accumulator + currentValue.credit;
+                } else {
+                    return accumulator;
+                }
+            }, 0)
+        );
+    }, [courseData, localStorage]);
 
     return (
         <div className="my-3 rounded shadow-lg pt-4" key={requirement.id}>
@@ -21,10 +35,10 @@ export default function RequirementTable({ requirement }) {
                 <div className="w-full py-3 lg:w-1/2 lg:my-0">
                     <Progress
                         indicatorColor="bg-green-500"
-                        value={(4 / requirement.unitsRequired) * 100}
+                        value={(units / requirement.unitsRequired) * 100}
                     />
                     <div className="mt-2 text-xs flex justify-center">
-                        4/{requirement.unitsRequired} units taken
+                        {units}/{requirement.unitsRequired} units taken
                     </div>
                 </div>
             </div>
@@ -43,7 +57,35 @@ export default function RequirementTable({ requirement }) {
                                             {`${courseIndex + 1}. ${
                                                 course.code
                                             } ${course.name}`}
-                                            <Checkbox className="mr-5" />
+                                            <Checkbox
+                                                className="mr-5"
+                                                checked={localStorage.containCourseCompleted(
+                                                    course.code
+                                                )}
+                                                onCheckedChange={(checked) => {
+                                                    if (checked) {
+                                                        localStorage.addCourseCompleted(
+                                                            course.code,
+                                                            "AY 2021 / 2022",
+                                                            "Semester 2"
+                                                        );
+                                                        setUnits(
+                                                            units +
+                                                                course.credit
+                                                        );
+                                                    } else {
+                                                        localStorage.removeCourseCompleted(
+                                                            course.code,
+                                                            "AY 2021 / 2022",
+                                                            "Semester 2"
+                                                        );
+                                                        setUnits(
+                                                            units -
+                                                                course.credit
+                                                        );
+                                                    }
+                                                }}
+                                            />
                                         </TableCell>
                                     </TableRow>
                                 ))}
@@ -51,7 +93,6 @@ export default function RequirementTable({ requirement }) {
                                 .length !== 0 ? (
                                 <TableRow>
                                     <TableCell className="flex align-left item-left justify-left text-left py-1">
-                                        {/* <div>"HI"</div> */}
                                         <SelectPopover
                                             onClick={() =>
                                                 localStorage.addCourseCompleted(
