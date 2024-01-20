@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import CourseTable from "@/components/courseTable";
 import useLocalStorage from "@/components/hooks/useLocalStorage";
 
-const Planner = () => {
+const Planner = ({ courses }) => {
     const localStorage = useLocalStorage();
     const completedCourses = localStorage.saved_data["Completed"];
     const pendingCourses = localStorage.saved_data["Pending"];
@@ -20,6 +20,7 @@ const Planner = () => {
                     {Object.entries(completedCourses).map(([year]) => (
                         <div key={year} className="mb-8 justify-center ">
                             <CourseTable
+                                courses={courses}
                                 year={year}
                                 completedForAY={completedCourses[year]}
                                 pendingForAY={pendingCourses[year]}
