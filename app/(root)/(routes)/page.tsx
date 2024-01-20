@@ -1,7 +1,9 @@
+import Header from "@/components/header";
 import LandingPageContent from "./components/content";
 import TrackerForm from "./components/tracker-form";
+import prismadb from "@/lib/prismadb";
 
-export default function LandingPage() {
+const LandingPage = async () => {
     return (
         <div className="flex">
             <div className="flex flex-col flex-grow overflow-auto bg-bg_light_gray">
@@ -10,4 +12,6 @@ export default function LandingPage() {
             </div>
         </div>
     );
-}
+};
+
+export default LandingPage;

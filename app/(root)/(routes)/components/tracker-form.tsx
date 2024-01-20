@@ -14,7 +14,9 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
+
+import { useEffect } from "react";
+import useLocalStorage from "@/components/hooks/useLocalStorage";
 
 const formSchema = z.object({
     degree: z.string().min(1, { message: "Please select a degree." }),
@@ -34,18 +36,18 @@ const TrackerForm = () => {
         },
     });
 
+    const localStorage = useLocalStorage();
+    const savedUserDetails = localStorage.saved_data["userDetails"];
+
     useEffect(() => {
-        const jsonUserDetails = localStorage.getItem("userDetails");
-        if (jsonUserDetails) {
-            const savedUserDetails = JSON.parse(jsonUserDetails);
+        if (savedUserDetails) {
             form.reset(savedUserDetails);
         }
-    }, []);
+    }, [savedUserDetails]);
 
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // save to local storage
-        localStorage.setItem("userDetails", JSON.stringify(values));
+        localStorage.addUserDetails(values);
     }
 
     return (

@@ -19,11 +19,14 @@ const LandingPageContent = () => {
                 </span>
             </div>
 
+            {/* container for action */}
             <div className="tablet:w-1/2 lg:w-2/5 xl:w-1/4 mt-28 phone:mt-56 tablet:mt-32 lg:mt-14 xl:mt-48 mx-auto flex flex-col space-y-3">
                 <div className="p-3 text-md tablet:text-lg text-text_gray font-bold mb-3">
                     Get started by choosing your Degree and Intake.
                 </div>
+                {/* button container */}
                 <div className="flex flex-col justify-center items-center h-full space-y-2">
+                    {/* remove rounded-2xl */}
 
                     <ScrollLink
                         to="tracker-form"
