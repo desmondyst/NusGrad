@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Progress } from "./ui/progress";
 import prismadb from "@/lib/prismadb";
+import { Checkbox } from "./ui/checkbox";
 
 export default async function RequirementTable({ requirement }) {
     const data = await prismadb.requirementCourse.findMany({
@@ -36,18 +37,27 @@ export default async function RequirementTable({ requirement }) {
             <div>
                 <Table>
                     <TableBody>
-                        {courseData.map((course, courseIndex) => (
-                            <TableRow
-                                className="border-2 border-gray-200"
-                                key={course.id}
-                            >
-                                <TableCell className="py-5 text-left text-sm">
-                                    {`${courseIndex + 1}. ${course.code} ${
-                                        course.name
-                                    }`}{" "}
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                        {courseData
+                            .filter((course) => course.compulsory)
+                            .map((course, courseIndex) => (
+                                <TableRow
+                                    className="border-2 border-gray-200"
+                                    key={course.id}
+                                >
+                                    <TableCell className="flex flex-row justify-between py-5 text-left text-sm">
+                                        {`${courseIndex + 1}. ${course.code} ${
+                                            course.name
+                                        }`}
+                                        <Checkbox className="mr-5" />
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        {courseData.filter((course) => !course.compulsory)
+                            .length !== 0 ? (
+                            <TableRow>Hi</TableRow>
+                        ) : (
+                            <> </>
+                        )}
                     </TableBody>
                 </Table>
             </div>
