@@ -11,31 +11,31 @@ interface LocalStorage {
 
 const defaultData = {
     userDetails: {},
-    // AllOfCompleted: new Set(),
-    // Completed: {},
-    // Pending: {},
-
     AllOfCompleted: new Set(),
-    Completed: {
-        "AY 2023/2024": {
-            "Semester 1": ["Course 1000", "Course 2"],
-            "Semester 2": ["Course 3", "Course 4"],
-        },
-        "AY 2024/2025": {
-            "Semester 1": ["Course 5", "Course 6"],
-            "Semester 2": ["Course 7", "Course 8"],
-        },
-    },
-    Pending: {
-        "AY 2023/2024": {
-            "Semester 1": ["Pending Course 3", "Pending Course 2"],
-            "Semester 2": ["Pending Course 3", "Pending Course 4"],
-        },
-        "AY 2024/2025": {
-            "Semester 1": ["Pending Course 5", "Pending Course 6"],
-            "Semester 2": ["Pending Course 7", "Pending Course 8"],
-        },
-    },
+    Completed: {},
+    Pending: {},
+
+    // AllOfCompleted: new Set(),
+    // Completed: {
+    //     "AY 2021/2022": {
+    //         "Semester 1": ["Course 1000", "Course 2"],
+    //         "Semester 2": ["Course 3", "Course 4"],
+    //     },
+    //     "AY 2022/2023": {
+    //         "Semester 1": ["Course 5", "Course 6"],
+    //         "Semester 2": ["Course 7", "Course 8"],
+    //     },
+    // },
+    // Pending: {
+    //     "AY 2021/2022": {
+    //         "Semester 1": ["Pending Course 3", "Pending Course 2"],
+    //         "Semester 2": ["Pending Course 3", "Pending Course 4"],
+    //     },
+    //     "AY 2022/2023": {
+    //         "Semester 1": ["Pending Course 5", "Pending Course 6"],
+    //         "Semester 2": ["Pending Course 7", "Pending Course 8"],
+    //     },
+    // },
 };
 
 const useLocalStorage = create(

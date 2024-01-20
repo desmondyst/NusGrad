@@ -7,19 +7,6 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
 export default function PlannerPage() {
-    // const [userTrackerDetails, setUserTrackerDetails] = useState(
-    //     {} as userTrackerDetails
-    // );
-    // useEffect(() => {
-    //     const jsonUserDetails = localStorage.getItem("userDetails");
-    //     if (jsonUserDetails) {
-    //         const savedUserDetails = JSON.parse(jsonUserDetails);
-    //         setUserTrackerDetails(savedUserDetails);
-    //     }
-    // }, []);
-
-    // console.log(userTrackerDetails);
-
     const localStorage = useLocalStorage();
     const savedUserDetails = localStorage.saved_data["userDetails"];
 
