@@ -31,12 +31,12 @@ async function main() {
     });
     const newDegree = await prismadb.degree.create({
         data: {
-            name: "Bachelor of Computer Science",
+            name: "Bachelor of Computing in Computer Science",
         },
     });
     const newBatch = await prismadb.batch.create({
         data: {
-            name: "AY21/22 Normal Intake",
+            name: "2021/22 Normal Intake",
         },
     });
     const newDegreeWithBatch = await prismadb.degreeWithBatch.create({

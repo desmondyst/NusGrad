@@ -2,15 +2,37 @@ import prismadb from "@/lib/prismadb";
 import { NextResponse } from "next/server";
 
 export async function GET(
-    req: Request
-    // { params }: { params: { storeId: string } }
+    req: Request,
+    {
+        params,
+    }: {
+        params: { degreeName: string, batchName: string };
+    }
 ) {
     try {
+        const degree = await prismadb.degree.findUnique({
+            where: {
+                name: params.degreeName,
+            },
+        });
+
+        const batch = await prismadb.batch.findUnique({
+            where: {
+                name: params.batchName,
+            },
+        });
+
+        const degreeWithBatch = await prismadb.degreeWithBatch.findFirst({
+            where: {
+                AND: [{ degreeId: degree?.id, batchId: batch?.id }],
+            },
+        });
+
         const data = await prismadb.degreeRequirement.findMany({
             // add deg w batch id
-            // where: {
-            //     degreeWithBatchId:
-            // }
+            where: {
+                degreeWithBatchId: degreeWithBatch.id,
+            },
         });
 
         const requirementData = await Promise.all(
