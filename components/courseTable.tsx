@@ -68,7 +68,6 @@ const CourseTable = ({ year, completedForAY, pendingForAY }) => {
                 >
                     X
                 </Button>
-                {/* )} */}
             </div>
             <div className="flex flex-col lg:flex-row">
                 {Object.entries(completedForAY).map(([semester], index) => (
