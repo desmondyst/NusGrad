@@ -4,7 +4,6 @@ import Planner from "@/app/(pages)/planner/components/planner";
 import { userTrackerDetails } from "@/app/types";
 import useLocalStorage from "@/components/hooks/useLocalStorage";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
 
 export default function PlannerPage() {
     const localStorage = useLocalStorage();
