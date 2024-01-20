@@ -837,66 +837,87 @@ export const courses = [
 export const requirements = [
     {
         name: "Computer Science Foundation",
+        unitsRequired: 36,
     },
     {
         name: "Computer Science Breadth & Depth",
+        unitsRequired: 28,
     },
     {
         name: "Industrial Experience Requirement",
+        unitsRequired: 12,
     },
     {
         name: "IT Professionalism",
+        unitsRequired: 12,
     },
     {
         name: "Mathematics & Sciences",
+        unitsRequired: 16,
     },
     {
         name: "FA - Algorithms & Theory",
+        unitsRequired: 12,
     },
     {
         name: "FA - Artificial Intelligence",
+        unitsRequired: 12,
     },
     {
         name: "FA - Computer Graphics and Games",
+        unitsRequired: 12,
     },
     {
         name: "FA - Computer Security",
+        unitsRequired: 12,
     },
     {
         name: "FA - Database Systems",
+        unitsRequired: 12,
     },
     {
         name: "FA - Multimedia Information Retrieval",
+        unitsRequired: 12,
     },
     {
         name: "FA - Networking and Distributed Systems",
+        unitsRequired: 12,
     },
     {
         name: "FA - Parallel Computing",
+        unitsRequired: 12,
     },
     {
         name: "FA - Programming Languages",
+        unitsRequired: 12,
     },
     {
         name: "FA - Software Engineering",
+        unitsRequired: 12,
     },
     {
         name: "GEA",
+        unitsRequired: 4,
     },
     {
         name: "GEC",
+        unitsRequired: 4,
     },
     {
         name: "GESS",
+        unitsRequired: 4,
     },
     {
         name: "GEI",
+        unitsRequired: 4,
     },
     {
         name: "GEN",
+        unitsRequired: 4,
     },
     {
         name: "GEX",
+        unitsRequired: 4,
     },
 ];
 export const CSF = [

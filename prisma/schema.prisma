@@ -72,6 +72,7 @@ model RequirementCourse {
 model Requirement {
   id Int @id @default(autoincrement())
   name String @unique
+  unitsRequired Int @default(0)
   degrees DegreeRequirement[]
   courses RequirementCourse[]
 }
