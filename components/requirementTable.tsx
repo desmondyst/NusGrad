@@ -26,9 +26,11 @@ export default async function RequirementTable({ requirement }) {
                 <div className="w-full py-3 lg:w-1/2 lg:my-0">
                     <Progress
                         indicatorColor="bg-[#3CB371]"
-                        value={(4 / 12) * 100}
+                        value={(4 / requirement.unitsRequired) * 100}
                     />
-                    <div className="mt-2 text-xs">4/12 units taken</div>
+                    <div className="mt-2 text-xs">
+                        4/{requirement.unitsRequired} units taken
+                    </div>
                 </div>
             </div>
             <div>
