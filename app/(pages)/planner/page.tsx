@@ -13,6 +13,8 @@ export default function PlannerPage() {
         return Object.keys(obj).length === 0;
     };
 
+    console.log(savedUserDetails);
+
     return (
         <div className="h-screen">
             {isEmptyObject(savedUserDetails) ? (
