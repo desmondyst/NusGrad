@@ -2,6 +2,9 @@
     "name": "nus_grad",
     "version": "0.1.0",
     "private": true,
+    "prisma": {
+        "seed": "tsx ./mock/seed.ts"
+    },
     "scripts": {
         "dev": "next dev",
         "build": "next build",

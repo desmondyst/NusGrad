@@ -33,14 +33,14 @@ model DegreeWithBatch {
   degree Degree @relation(fields: [degreeId], references: [id])
   batchId Int
   batch Batch @relation(fields: [batchId], references: [id])
-  degreeRequirements degreeRequirement[]
+  degreeRequirements DegreeRequirement[]
 
   @@index([degreeId])
   @@index([batchId])
   @@unique([degreeId, batchId])
 }
 
-model degreeRequirement {
+model DegreeRequirement {
   id Int @id @default(autoincrement())
   degreeWithBatchId Int
   degreeWithBatch DegreeWithBatch @relation(fields: [degreeWithBatchId], references: [id])
@@ -59,7 +59,7 @@ model RequirementCourse {
   requirement Requirement @relation(fields: [requirementId], references: [id])
   courseId Int
   course Course @relation(fields: [courseId], references: [id])
-  degreeRequirements degreeRequirement[]
+  degreeRequirements DegreeRequirement[]
 
   @@index([requirementId])
   @@index([courseId])
