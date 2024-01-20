@@ -4,6 +4,7 @@ import Planner from "@/app/(pages)/planner/components/planner";
 import { userTrackerDetails } from "@/app/types";
 import useLocalStorage from "@/components/hooks/useLocalStorage";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function PlannerPage() {
     const localStorage = useLocalStorage();
@@ -12,8 +13,6 @@ export default function PlannerPage() {
     const isEmptyObject = (obj: userTrackerDetails) => {
         return Object.keys(obj).length === 0;
     };
-
-    console.log(savedUserDetails);
 
     return (
         <div className="h-screen">
@@ -26,7 +25,9 @@ export default function PlannerPage() {
                             are able to use the Grad Planner
                             {/* #NOTE: Add a button here to redirect to set up */}
                         </div>
-                        <Button className="mt-10">Set up now.</Button>
+                        <Link href="/#tracker-form">
+                            <Button className="mt-10">Set up now.</Button>
+                        </Link>
                     </div>
                 </div>
             ) : (
