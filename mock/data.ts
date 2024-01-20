@@ -47,6 +47,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 1000,
+        compulsory: true,
     },
     {
         code: "CS1231",
@@ -61,6 +62,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 1000,
+        compulsory: true,
     },
     {
         code: "CS2030",
@@ -75,6 +77,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "CS2040",
@@ -96,6 +99,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "CS2100",
@@ -103,6 +107,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "CS2101",
@@ -110,6 +115,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "CS2102",
@@ -131,6 +137,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "CS2104",
@@ -152,6 +159,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "CS2107",
@@ -173,6 +181,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "CS2113",
@@ -271,6 +280,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 3000,
+        compulsory: true,
     },
     {
         code: "CS3231",
@@ -712,6 +722,7 @@ export const courses = [
         credit: 4,
         type: "Computing",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "MA1521",
@@ -719,6 +730,7 @@ export const courses = [
         credit: 4,
         type: "Mathematics",
         level: 1000,
+        compulsory: true,
     },
     {
         code: "MA2001",
@@ -726,6 +738,7 @@ export const courses = [
         credit: 4,
         type: "Mathematics",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "ST2334",
@@ -733,6 +746,7 @@ export const courses = [
         credit: 4,
         type: "Mathematics",
         level: 2000,
+        compulsory: true,
     },
     {
         code: "PC1201",

@@ -3,15 +3,16 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Progress } from "../../../../components/ui/progress";
 import SelectPopover from "../../../../components/selectPopover";
 import { useEffect, useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
 export default function RequirementTable({ requirement }) {
     const [courseData, setCourseData] = useState([]);
 
     const URL = `http://localhost:3000/api/requirementCourse/${requirement.id}`;
     useEffect(() => {
         fetch(URL)
-        .then(response => response.json())
-        .then(data => setCourseData(data));
-      }, [requirement]);
+            .then((response) => response.json())
+            .then((data) => setCourseData(data));
+    }, [requirement]);
 
     return (
         <div className="my-3 rounded shadow-lg pt-4" key={requirement.id}>
@@ -31,32 +32,40 @@ export default function RequirementTable({ requirement }) {
                 <Table>
                     <TableBody>
                         <>
-                            {courseData.map((course, courseIndex) => (
-                                <TableRow
-                                    className="border-2 border-gray-200"
-                                    key={courseIndex}
-                                >
-                                    <TableCell className="py-5 text-left text-sm">
-                                        {`${courseIndex + 1}. ${course.code} ${
-                                            course.name
-                                        }`}{" "}
+                            {courseData
+                                .filter((course) => course.compulsory)
+                                .map((course, courseIndex) => (
+                                    <TableRow
+                                        className="border-2 border-gray-200"
+                                        key={courseIndex}
+                                    >
+                                        <TableCell className="flex flex-row justify-between py-5 text-left text-sm">
+                                            {`${courseIndex + 1}. ${
+                                                course.code
+                                            } ${course.name}`}
+                                            <Checkbox className="mr-5" />
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            {courseData.filter((course) => !course.compulsory)
+                                .length !== 0 ? (
+                                <TableRow>
+                                    <TableCell className="flex align-left item-left justify-left text-left py-1">
+                                        {/* <div>"HI"</div> */}
+                                        <SelectPopover
+                                            onClick={() =>
+                                                localStorage.addCourseCompleted(
+                                                    "Test",
+                                                    "AY 2023/2024",
+                                                    "Semester 1"
+                                                )
+                                            }
+                                        />
                                     </TableCell>
                                 </TableRow>
-                            ))}
-                            <TableRow>
-                                <TableCell className="flex align-left item-left justify-left text-left py-1">
-                                    {/* <div>"HI"</div> */}
-                                    <SelectPopover
-                                        onClick={() =>
-                                            localStorage.addCourseCompleted(
-                                                "Test",
-                                                'AY 2023/2024',
-                                                'Semester 1'
-                                            )
-                                        }
-                                    />
-                                </TableCell>
-                            </TableRow>
+                            ) : (
+                                <> </>
+                            )}
                         </>
                     </TableBody>
                 </Table>
@@ -64,4 +73,3 @@ export default function RequirementTable({ requirement }) {
         </div>
     );
 }
-
