@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 export const useCourses = (initialCourses) => {
-    // console.log(initialCourses);
     const [courses, setCourses] = useState(initialCourses);
 
     const addCourse = (year, semester, course) => {

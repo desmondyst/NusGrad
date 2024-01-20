@@ -5,8 +5,6 @@ import SelectPopover from "@/components/selectPopover";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 const CourseTable = ({ year, completedForAY, pendingForAY }) => {
-    console.log(completedForAY);
-
     const localStorage = useLocalStorage();
 
     const currentDate = new Date();
