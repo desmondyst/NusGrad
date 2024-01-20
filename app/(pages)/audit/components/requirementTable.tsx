@@ -6,15 +6,9 @@ import { useEffect, useState } from "react";
 export default function RequirementTable({ requirement }) {
     const [courseData, setCourseData] = useState([]);
 
-    const URL = "http://localhost:3000/api/requirementCourse";
+    const URL = `http://localhost:3000/api/requirementCourse/${requirement.id}`;
     useEffect(() => {
-        fetch(URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ requirementId: requirement.id }),
-        })
+        fetch(URL)
         .then(response => response.json())
         .then(data => setCourseData(data));
       }, [requirement]);
