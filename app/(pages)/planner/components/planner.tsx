@@ -1,6 +1,5 @@
 "use client";
 
-import { useCourses } from "@/components/hooks/useCourse";
 import { Button } from "@/components/ui/button";
 import CourseTable from "@/components/courseTable";
 import useLocalStorage from "@/components/hooks/useLocalStorage";
