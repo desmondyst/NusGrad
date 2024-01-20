@@ -45,7 +45,7 @@ async function main() {
             batchId: newBatch.id,
         },
     });
-    requirements.map(async (req) => {
+    requirements.map(async (req, reqIndex) => {
         const reqData = await prismadb.requirement.create({
             data: req,
         });
@@ -64,12 +64,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "Computer Science Breadth & Depth":
@@ -86,12 +80,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "Industrial Experience Requirement":
@@ -108,12 +96,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "IT Professionalism":
@@ -130,12 +112,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "Mathematics & Sciences":
@@ -152,12 +128,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Algorithms & Theory":
@@ -174,12 +144,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Artificial Intelligence":
@@ -196,12 +160,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Computer Graphics and Games":
@@ -218,12 +176,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Computer Security":
@@ -240,12 +192,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Database Systems":
@@ -262,12 +208,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Multimedia Information Retrieval":
@@ -284,12 +224,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Networking and Distributed Systems":
@@ -306,12 +240,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Parallel Computing":
@@ -328,12 +256,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Programming Languages":
@@ -350,12 +272,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "FA - Software Engineering":
@@ -372,12 +288,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "GEA":
@@ -390,12 +300,6 @@ async function main() {
                     data: {
                         requirementId: reqData.id,
                         courseId: courseData?.id,
-                    },
-                });
-                const newDegReq = await prismadb.degreeRequirement.create({
-                    data: {
-                        degreeWithBatchId: newDegreeWithBatch.id,
-                        requirementCourseId: newReqCourse.id,
                     },
                 });
                 break;
@@ -413,12 +317,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "GEI":
@@ -435,12 +333,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "GESS":
@@ -457,12 +349,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "GEN":
@@ -479,12 +365,6 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
             case "GEX":
@@ -501,15 +381,15 @@ async function main() {
                                 courseId: courseData?.id,
                             },
                         });
-                    const newDegReq = await prismadb.degreeRequirement.create({
-                        data: {
-                            degreeWithBatchId: newDegreeWithBatch.id,
-                            requirementCourseId: newReqCourse.id,
-                        },
-                    });
                 });
                 break;
         }
+        await prismadb.degreeRequirement.create({
+            data: {
+                degreeWithBatchId: newDegreeWithBatch.id,
+                requirementId: reqData.id,
+            },
+        });
     });
 }
 
