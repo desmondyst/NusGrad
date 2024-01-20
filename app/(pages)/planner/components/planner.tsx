@@ -9,8 +9,6 @@ const Planner = () => {
     const completedCourses = localStorage.saved_data["Completed"];
     const pendingCourses = localStorage.saved_data["Pending"];
 
-    console.log(completedCourses);
-
     const isEmptyObject = (obj: any) => {
         return Object.keys(obj).length === 0;
     };
