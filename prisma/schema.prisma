@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  relationMode = "prisma"
+}
+
+// Schema Definition for Requirements Draft 1 (Missing onDELETE and onUPDATE actions for now)
+
+// Example {id: 1, name: "Bachelor of Computer Science"}
+model Degree {
+  id  Int  @id @default(autoincrement())
+  name String @unique
+  batches DegreeWithBatch[]
+}
+
+// Example {id: 1, name: "AY21/22 Normal Intake"}
+model Batch {
+  id Int @id @default(autoincrement())
+  name String @unique
+  degrees DegreeWithBatch[]
+}
+
+model DegreeWithBatch {
+  id Int @id @default(autoincrement())
+  degreeId Int
+  degree Degree @relation(fields: [degreeId], references: [id])
+  batchId Int
+  batch Batch @relation(fields: [batchId], references: [id])
+  degreeRequirements degreeRequirement[]
+
+  @@index([degreeId])
+  @@index([batchId])
+  @@unique([degreeId, batchId])
+}
+
+model degreeRequirement {
+  id Int @id @default(autoincrement())
+  degreeWithBatchId Int
+  degreeWithBatch DegreeWithBatch @relation(fields: [degreeWithBatchId], references: [id])
+  requirementCourseId Int
+  requirementCourse RequirementCourse @relation(fields: [requirementCourseId], references: [id])
+
+  @@index([degreeWithBatchId])
+  @@index([requirementCourseId])
+
+  @@unique([degreeWithBatchId, requirementCourseId])
+}
+
+model RequirementCourse {
+  id Int @id @default(autoincrement())
+  requirementId Int
+  requirement Requirement @relation(fields: [requirementId], references: [id])
+  courseId Int
+  course Course @relation(fields: [courseId], references: [id])
+  degreeRequirements degreeRequirement[]
+
+  @@index([requirementId])
+  @@index([courseId])
+
+  @@unique([requirementId, courseId])
+}
+
+// Example: Example {id: 1, name: "GESS", degreeRequirements: [degreeRequirement]  }
+
+// dealing with FOCUS Area
+// Example: Example {id: 1, name: "FA-ArtificialIntelligence", degreeRequirements: [degreeRequirement]  }
+model Requirement {
+  id Int @id @default(autoincrement())
+  name String @unique
+  courses RequirementCourse[]
+}
+
+// Example {id: 1, code: "CS2105" name: "Introduction to computer networks." credits: 4}
+model Course {
+  id Int @id @default(autoincrement())
+  code      String        @unique
+  name      String
+  credit    Int
+  requirements RequirementCourse[]
+
+  type String // Computing
+  level Int // 1000
+}
+
+
+
