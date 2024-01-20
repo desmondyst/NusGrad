@@ -6,11 +6,31 @@ export async function GET(
     // { params }: { params: { storeId: string } }
 ) {
     try {
+        const { degreeName, batchName } = req.body;
+
+        const degree = await prismadb.degree.findUnique({
+            where: {
+                name: degreeName,
+            },
+        });
+
+        const batch = await prismadb.batch.findUnique({
+            where: {
+                name: batchName,
+            },
+        });
+
+        const degreeWithBatch = await prismadb.degreeWithBatch.findFirst({
+            where: {
+                AND: [{ degreeId: degree?.id, batchId: batch?.id }],
+            },
+        });
+
         const data = await prismadb.degreeRequirement.findMany({
             // add deg w batch id
-            // where: {
-            //     degreeWithBatchId:
-            // }
+            where: {
+                degreeWithBatchId: degreeWithBatch.id,
+            },
         });
 
         const requirementData = await Promise.all(
