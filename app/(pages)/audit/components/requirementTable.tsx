@@ -3,7 +3,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Progress } from "../../../../components/ui/progress";
 import SelectPopover from "../../../../components/selectPopover";
 import { useEffect, useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
+import SelectDatePopover from "@/components/selectDatePopover";
+
 export default function RequirementTable({ requirement }) {
     const [courseData, setCourseData] = useState([]);
 
@@ -43,7 +44,7 @@ export default function RequirementTable({ requirement }) {
                                             {`${courseIndex + 1}. ${
                                                 course.code
                                             } ${course.name}`}
-                                            <Checkbox className="mr-5" />
+                                            <SelectDatePopover onSubmit={(year, semester) => console.log(year, semester)}/>
                                         </TableCell>
                                     </TableRow>
                                 ))}
