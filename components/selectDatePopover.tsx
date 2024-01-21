@@ -12,33 +12,20 @@ import {
     PopoverTrigger,
     PopoverClose,
 } from "@/components/ui/popover";
-import { Checkbox} from "./ui/checkbox";
+import { Checkbox } from "./ui/checkbox";
 import { Button } from "./ui/button";
+import useLocalStorage from "./hooks/useLocalStorage";
 
-const years = [
-    {
-        value: "AY 2022 / 2023",
-        label: "AY 2022 / 2023",
-    },
-    {
-        value: "AY 2023 / 2024",
-        label: "AY 2023 / 2024",
-    },
-];
+const SelectDatePopover = ({
+    years,
+    semesters,
+    localStorage,
+    setUnits,
+    units,
+    course,
+}) => {
+    console.log(years);
 
-const semesters = [
-    {
-        value: "Semester 1",
-        label: "Semester 1",
-    },
-    {
-        value: "Semester 2",
-        label: "Semester 2",
-    },
-    // Add more semesters as needed
-];
-
-const SelectDatePopover = ({ localStorage, setUnits, units, course }) => {
     const [ticked, setTicked] = useState(false);
     const [open, setOpen] = useState(false);
     const [selectedYear, setSelectedYear] = useState("");
@@ -51,10 +38,7 @@ const SelectDatePopover = ({ localStorage, setUnits, units, course }) => {
                 selectedYear,
                 selectedSemester
             );
-            setUnits(
-                units +
-                    course.credit
-            );
+            setUnits(units + course.credit);
             setOpen(false);
         }
     };
@@ -64,7 +48,7 @@ const SelectDatePopover = ({ localStorage, setUnits, units, course }) => {
             <PopoverTrigger asChild>
                 <Checkbox
                     className="mr-5"
-                    checked = {localStorage.containCourseCompleted(course.code)}
+                    checked={localStorage.containCourseCompleted(course.code)}
                     onCheckedChange={(checked) => {
                         if (checked) {
                             setOpen(true);
@@ -74,10 +58,7 @@ const SelectDatePopover = ({ localStorage, setUnits, units, course }) => {
                                 selectedYear,
                                 selectedSemester
                             );
-                            setUnits(
-                                units -
-                                    course.credit
-                            );
+                            setUnits(units - course.credit);
                             setOpen(false);
                         }
                     }}
@@ -114,18 +95,18 @@ const SelectDatePopover = ({ localStorage, setUnits, units, course }) => {
                     <CommandEmpty>No semester found.</CommandEmpty>
                     <CommandGroup>
                         <div className="border border-gray-400 rounded-xl divide-y-2 divide-gray-400">
-                        {semesters.map((semester) => (
-                            <CommandItem
-                                key={semester.value}
-                                value={semester.value}
-                                className="text-gray-700"
-                                onSelect={() => {
-                                    setSelectedSemester(semester.value);
-                                }}
-                            >
-                                {semester.label}
-                            </CommandItem>
-                        ))}
+                            {semesters.map((semester) => (
+                                <CommandItem
+                                    key={semester.value}
+                                    value={semester.value}
+                                    className="text-gray-700"
+                                    onSelect={() => {
+                                        setSelectedSemester(semester.value);
+                                    }}
+                                >
+                                    {semester.label}
+                                </CommandItem>
+                            ))}
                         </div>
                     </CommandGroup>
                 </Command>
