@@ -5,7 +5,6 @@ import AuditTable from "./components/auditTable";
 import SummaryTable from "./components/summaryTable";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Link as ScrollLink, animateScroll } from "react-scroll";
 
 const data = [
     {
@@ -26,7 +25,7 @@ export default function AuditPage() {
     const localStorage = useLocalStorage();
     const savedUserDetails = localStorage.saved_data["userDetails"];
 
-    const isEmptyObject = (obj: userTrackerDetails) => {
+    const isEmptyObject = (obj: any) => {
         return Object.keys(obj).length === 0;
     };
 

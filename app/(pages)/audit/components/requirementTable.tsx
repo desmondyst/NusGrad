@@ -79,6 +79,7 @@ export default function RequirementTable({ requirement, localStorage }) {
                                                     "Semester 1"
                                                 )
                                             }
+                                            coursesCode={[]}
                                         />
                                     </TableCell>
                                 </TableRow>
