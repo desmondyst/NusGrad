@@ -6,20 +6,8 @@ import SummaryTable from "./components/summaryTable";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const data = [
-    {
-        req1: { name: "Computer Science Foundation", taken: 36, total: 40 },
-        req2: {
-            name: "Computer Science Breadth & Depth",
-            taken: 16,
-            total: 32,
-        },
-        req3: { name: "GE Requirements", taken: 8, total: 24 },
-        req4: { name: "Mathematics & Sciences", taken: 16, total: 16 },
-    },
-];
-
-const completedMC: number = 120;
+import { Link as ScrollLink, animateScroll } from "react-scroll";
+import { useEffect, useState } from "react";
 
 export default function AuditPage() {
     const localStorage = useLocalStorage();
@@ -53,10 +41,7 @@ export default function AuditPage() {
                             {`${savedUserDetails.degree} (${savedUserDetails.intake})`}
                         </div>
                         {/* <Planner /> */}
-                        <SummaryTable
-                            data={data}
-                            completedMC={completedMC}
-                        ></SummaryTable>
+                        <SummaryTable />
                         <AuditTable />
                     </div>
                 </div>

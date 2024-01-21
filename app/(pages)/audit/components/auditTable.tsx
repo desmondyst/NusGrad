@@ -1,13 +1,14 @@
 "use client";
 import RequirementTable from "./requirementTable";
-import { useEffect, useState } from "react";
 import useLocalStorage from "@/components/hooks/useLocalStorage";
+import { useEffect, useState } from "react";
 
 export default function AuditTable() {
     const localStorage = useLocalStorage();
     const savedUserDetails = localStorage.saved_data["userDetails"];
     const degreeName = savedUserDetails["degree"];
     const batchName = savedUserDetails["intake"];
+
     const [requirementData, setRequirementData] = useState([]);
     const encodedDegreeName = encodeURIComponent(degreeName);
     const encodedBatchName = encodeURIComponent(batchName);
