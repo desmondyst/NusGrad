@@ -33,8 +33,6 @@ const SelectOptionalPopover = ({ years, coursesCode, localStorage, semesters }) 
         );
     };
     const handleSubmit = () => {
-        console.log("hi")
-        console.log(selectedCourse, selectedYear, selectedSemester)
         if (selectedYear && selectedSemester) {
             onClick(
                 selectedCourse.toUpperCase(),
@@ -61,12 +59,10 @@ const SelectOptionalPopover = ({ years, coursesCode, localStorage, semesters }) 
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-1/8 tablet:w-96">
-                {/* <ScrollArea> */}
                 <Command className="space-y-2">
                     <div className="text-xs tablet:text-sm text-left">
                         <div className="text-gray-700">Add a course</div>
                     </div>
-                    {/* <CommandInput placeholder="Search course..." /> */}
                     <CommandEmpty>No course found.</CommandEmpty>
                         <ScrollArea>
                             <CommandGroup>
@@ -134,7 +130,6 @@ const SelectOptionalPopover = ({ years, coursesCode, localStorage, semesters }) 
                             </div>
                         </CommandGroup>
                     </Command>
-                    {/* </ScrollArea> */}
                 <Button onClick={handleSubmit}>Submit</Button>
                 <PopoverClose className="text-orange rounded-2xl bg-transparent hover:bg-gray-100 absolute top-0 right-2 m-3">
                     X

@@ -1,10 +1,9 @@
 "use client";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Progress } from "../../../../components/ui/progress";
-import SelectPopover from "../../../../components/selectPopover";
+import SelectOptionalPopover from "../../../../components/selectOptionalPopover";
 import { useEffect, useState } from "react";
 import SelectDatePopover from "@/components/selectDatePopover";
-import { start } from "repl";
 
 const semesters = [
     {
@@ -124,21 +123,10 @@ export default function RequirementTable({ requirement, localStorage }) {
                                 .length !== 0 ? (
                                 <TableRow>
                                     <TableCell className="flex align-left item-left justify-left text-left py-1">
-<<<<<<< Updated upstream
-                                        <SelectPopover
-                                            onClick={(course) => {
-                                                localStorage.addCourseCompleted(
-                                                    course.toUpperCase(),
-                                                    "AY 2023 / 2024",
-                                                    "Semester 1"
-                                                );
-                                            }}
-=======
                                         <SelectOptionalPopover
                                             years={yearsPassed}
                                             semesters={semesters}
                                             localStorage={localStorage}
->>>>>>> Stashed changes
                                             coursesCode={courseData
                                                 .filter(
                                                     (course) =>

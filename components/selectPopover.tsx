@@ -18,22 +18,6 @@ import {
 import AddIcon from "../public/orangeAdd.png";
 import { ScrollArea } from "./ui/scroll-area";
 
-const courses = [
-    {
-        value: "Course 1",
-        label: "Course 1",
-    },
-    {
-        value: "Course 2",
-        label: "Course 2",
-    },
-    {
-        value: "Course 3",
-        label: "Course 3",
-    },
-    // Add more courses as needed
-];
-
 const SelectPopover = ({ coursesCode, onClick }) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
