@@ -5,6 +5,19 @@ import { persist, createJSONStorage } from "zustand/middleware";
 
 interface LocalStorage {
     saved_data: {};
+    addUserDetails: (newDetails: any) => void;
+    addYear: () => void;
+    removeYear: (year: string) => void;
+    removeCourseCompleted: (
+        completedCourse: string,
+        year: string,
+        semester: string
+    ) => void;
+    addCourseCompleted: (
+        newCompletedCourse: string,
+        AY: string,
+        semester: string
+    ) => void;
 }
 
 // https://docs.pmnd.rs/zustand/integrations/persisting-store-data
