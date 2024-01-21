@@ -27,8 +27,9 @@ export default function RootLayout({
 
                     <div className="lg:w-[75%] mx-auto">{children}</div>
                     <div className="pt-14 fixed top-0 right-0 lg:h-full w-full lg:w-[15%] xl:w-[10%] hidden lg:block border-l-2">
-                        <div className="bg-orange p-5 lg:min-h-28 xl:min-h-36 text-white text-center flex justify-center items-center">
-                            Never lose your data by signing in to your account!
+                        <div className="bg-orange p-5 lg:min-h-28 xl:min-h-36 text-white text-center">
+                            <p>Track your graduation easily with</p>
+                            <p className="font-bold">NUSGRAD!</p>
                         </div>
                     </div>
                 </div>
