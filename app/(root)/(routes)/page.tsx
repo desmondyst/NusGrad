@@ -7,17 +7,9 @@ import TrackerForm from "./components/trackerForm";
 import { redirect, useRouter } from "next/navigation";
 
 const LandingPage = () => {
-    const router = useRouter();
+    // const router = useRouter();
     const localStorage = useLocalStorage();
-    const userDetails = localStorage["saved_data"]["userDetails"];
-
-    const isEmptyObject = (obj: any) => {
-        return Object.keys(obj).length === 0;
-    };
-
-    if (!isEmptyObject(userDetails)) {
-        router.push("/audit");
-    }
+    // const userDetails = localStorage["saved_data"]["userDetails"];
 
     return (
         <div className="flex">
