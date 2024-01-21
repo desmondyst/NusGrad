@@ -82,21 +82,23 @@ const SummaryTable = () => {
     const [course, setCourse] = useState([]);
     const [units, setUnits] = useState(0);
     useEffect(() => {
-        localStorage.saved_data["AllOfCompleted"].map((code) => {
-            fetch(`http://localhost:3000/api/course/${code}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    setCourse(course.append(data));
-                })
-                .then(() => {
-                    setUnits(
-                        course.reduce((accumulator, currentValue) => {
-                            return accumulator + currentValue.credit;
-                        }, 0)
-                    );
-                });
+        Promise.all(
+            localStorage.saved_data["AllOfCompleted"].map((code) =>
+                fetch(`http://localhost:3000/api/course/${code}`).then(
+                    (response) => response.json()
+                )
+            )
+        ).then((data) => {
+            setCourse(data);
         });
     }, [localStorage]);
+    useEffect(() => {
+        setUnits(
+            course.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue.credit;
+            }, 0)
+        );
+    }, [course]);
     return (
         <div className="rounded shadow-lg w-full">
             <div className="w-full flex flex-row justify-between items-center text-md leading-4 font-bold bg-orange bg-opacity-75 text-[#4B5563] tracking-wider p-5 shadow border border-gray-300">
