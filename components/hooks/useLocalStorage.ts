@@ -13,9 +13,19 @@ interface LocalStorage {
         year: string,
         semester: string
     ) => void;
+    addCoursePending: (
+        completedCourse: string,
+        year: string,
+        semester: string
+    ) => void;
     addCourseCompleted: (
         newCompletedCourse: string,
         AY: string,
+        semester: string
+    ) => void;
+    removeCoursePending: (
+        pendingCourse: string,
+        year: string,
         semester: string
     ) => void;
 }
@@ -61,7 +71,7 @@ const useLocalStorage = create(
                     currentSavedCompletedCourses[AY] = {
                         "Semester 1": [],
                         "Semester 2": [],
-                    }
+                    };
                 }
                 const updatedSemester = [
                     ...currentSavedCompletedCourses[AY][semester],
