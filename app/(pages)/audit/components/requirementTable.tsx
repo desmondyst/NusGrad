@@ -71,7 +71,7 @@ export default function RequirementTable({ requirement, localStorage }) {
             .then((data) => {
                 setCourseData(data);
             });
-    }, [requirement]);
+    }, [localStorage, requirement]);
 
     useEffect(() => {
         setUnits(
@@ -104,7 +104,13 @@ export default function RequirementTable({ requirement, localStorage }) {
                     <TableBody>
                         <>
                             {courseData
-                                .filter((course) => course.compulsory)
+                                .filter(
+                                    (course) =>
+                                        course.compulsory ||
+                                        localStorage.containCourseCompleted(
+                                            course.code
+                                        )
+                                )
                                 .map((course, courseIndex) => (
                                     <TableRow
                                         className="border-2 border-gray-200"
@@ -130,14 +136,22 @@ export default function RequirementTable({ requirement, localStorage }) {
                                 <TableRow>
                                     <TableCell className="flex align-left item-left justify-left text-left py-1">
                                         <SelectPopover
-                                            onClick={() =>
+                                            onClick={(course) => {
                                                 localStorage.addCourseCompleted(
-                                                    "Test",
-                                                    "AY 2023/2024",
+                                                    course.toUpperCase(),
+                                                    "AY 2023 / 2024",
                                                     "Semester 1"
+                                                );
+                                            }}
+                                            coursesCode={courseData
+                                                .filter(
+                                                    (course) =>
+                                                        !course.compulsory
                                                 )
-                                            }
-                                            coursesCode={[]}
+                                                .map((c) => ({
+                                                    value: c.code,
+                                                    label: c.code,
+                                                }))}
                                         />
                                     </TableCell>
                                 </TableRow>
