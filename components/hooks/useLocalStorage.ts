@@ -62,6 +62,20 @@ const useLocalStorage = create(
                 }
                 return false;
             },
+            getCourseYearAndSemester: (courseCode) => {
+                const currentSavedData = get().saved_data;
+                const completedCourses = currentSavedData["Completed"];
+
+                for (const [year, semesters] of Object.entries(completedCourses)) {
+                    for (const [semester, courses] of Object.entries(semesters)) {
+                        if (courses.includes(courseCode)) {
+                            return [year, semester];
+                        }
+                    }
+                }
+
+                return [null, null];
+            },
             // #NOTE: Completed functions not tested, waiting for audit page
             addCourseCompleted: (newCompletedCourse, AY, semester) => {
                 const currentSavedData = get().saved_data;
