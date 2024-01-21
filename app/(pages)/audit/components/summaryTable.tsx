@@ -113,6 +113,7 @@ const SummaryTable = () => {
                             )
                             .map((item, index) => (
                                 <RequirementCell
+                                    key={item.id}
                                     localStorage={localStorage}
                                     requirement={item}
                                     border
