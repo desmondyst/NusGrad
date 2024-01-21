@@ -8,7 +8,7 @@ import SelectDatePopover from "@/components/selectDatePopover";
 export default function RequirementTable({ requirement, localStorage }) {
     const [courseData, setCourseData] = useState([]);
     const [units, setUnits] = useState(0);
-    const URL = `http://localhost:3000/api/requirementCourse/${requirement.id}`;
+    const URL = `${process.env.NEXT_PUBLIC_API_URL}/api/requirementCourse/${requirement.id}`;
     useEffect(() => {
         fetch(URL)
             .then((response) => response.json())

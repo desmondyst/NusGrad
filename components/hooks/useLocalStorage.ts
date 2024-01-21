@@ -73,6 +73,16 @@ const useLocalStorage = create(
                         "Semester 2": [],
                     };
                 }
+
+                const currentSavedPendingCourses =
+                    currentSavedData["Pending"];
+                if (currentSavedPendingCourses[AY] == undefined) {
+                    currentSavedPendingCourses[AY] = {
+                        "Semester 1": [],
+                        "Semester 2": [],
+                    };
+                }
+
                 const updatedSemester = [
                     ...currentSavedCompletedCourses[AY][semester],
                     newCompletedCourse,
@@ -87,6 +97,9 @@ const useLocalStorage = create(
                             [semester]: updatedSemester,
                         },
                     },
+                    ["Pending"]: {
+                        ...currentSavedPendingCourses
+                    }
                 };
                 set({
                     saved_data: withAddedDetails,
