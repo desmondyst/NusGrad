@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/popover";
 import { Checkbox } from "./ui/checkbox";
 import { Button } from "./ui/button";
-import useLocalStorage from "./hooks/useLocalStorage";
 
 const SelectDatePopover = ({
     years,
@@ -24,7 +23,6 @@ const SelectDatePopover = ({
     units,
     course,
 }) => {
-    console.log(years);
 
     const [open, setOpen] = useState(false);
     const [selectedYear, setSelectedYear] = useState("");
