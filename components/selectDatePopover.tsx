@@ -26,7 +26,6 @@ const SelectDatePopover = ({
 }) => {
     console.log(years);
 
-    const [ticked, setTicked] = useState(false);
     const [open, setOpen] = useState(false);
     const [selectedYear, setSelectedYear] = useState("");
     const [selectedSemester, setSelectedSemester] = useState("");
@@ -53,10 +52,11 @@ const SelectDatePopover = ({
                         if (checked) {
                             setOpen(true);
                         } else {
+                            const [courseYear, courseSemester] = localStorage.getCourseYearAndSemester(course.code);
                             localStorage.removeCourseCompleted(
                                 course.code,
-                                selectedYear,
-                                selectedSemester
+                                courseYear,
+                                courseSemester
                             );
                             setUnits(units - course.credit);
                             setOpen(false);

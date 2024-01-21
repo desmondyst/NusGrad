@@ -18,9 +18,16 @@ import {
 import AddIcon from "../public/orangeAdd.png";
 import { ScrollArea } from "./ui/scroll-area";
 
-const SelectPopover = ({ coursesCode, onClick }) => {
+const SelectOptionalPopover = ({ coursesCode, localStorage }) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
+    const onClick = (course) => {
+        localStorage.addCourseCompleted(
+            course.toUpperCase(),
+            "AY 2021 / 2022",
+            "Semester 1"
+        );
+    };
 
     return (
         <Popover open={open} onOpenChange={setOpen} modal={true}>
@@ -79,4 +86,4 @@ const SelectPopover = ({ coursesCode, onClick }) => {
     );
 };
 
-export default SelectPopover;
+export default SelectOptionalPopover;
