@@ -46,7 +46,6 @@ const SelectDatePopover = ({ localStorage, setUnits, units, course }) => {
 
     const handleSubmit = () => {
         if (selectedYear && selectedSemester) {
-            console.log(selectedSemester)
             localStorage.addCourseCompleted(
                 course.code,
                 selectedYear,
