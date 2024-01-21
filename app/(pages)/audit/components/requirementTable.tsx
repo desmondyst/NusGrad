@@ -6,17 +6,6 @@ import { useEffect, useState } from "react";
 import SelectDatePopover from "@/components/selectDatePopover";
 import { start } from "repl";
 
-const years = [
-    {
-        value: "AY 2022 / 2023",
-        label: "AY 2022 / 2023",
-    },
-    {
-        value: "AY 2023 / 2024",
-        label: "AY 2023 / 2024",
-    },
-];
-
 const semesters = [
     {
         value: "Semester 1",
@@ -135,6 +124,7 @@ export default function RequirementTable({ requirement, localStorage }) {
                                 .length !== 0 ? (
                                 <TableRow>
                                     <TableCell className="flex align-left item-left justify-left text-left py-1">
+<<<<<<< Updated upstream
                                         <SelectPopover
                                             onClick={(course) => {
                                                 localStorage.addCourseCompleted(
@@ -143,6 +133,12 @@ export default function RequirementTable({ requirement, localStorage }) {
                                                     "Semester 1"
                                                 );
                                             }}
+=======
+                                        <SelectOptionalPopover
+                                            years={yearsPassed}
+                                            semesters={semesters}
+                                            localStorage={localStorage}
+>>>>>>> Stashed changes
                                             coursesCode={courseData
                                                 .filter(
                                                     (course) =>
