@@ -17,12 +17,12 @@ import { Button } from "./ui/button";
 
 const years = [
     {
-        value: "2021",
-        label: "2021",
+        value: "AY 2022 / 2023",
+        label: "AY 2022 / 2023",
     },
     {
-        value: "2022",
-        label: "2022",
+        value: "AY 2023 / 2024",
+        label: "AY 2023 / 2024",
     },
 ];
 
@@ -38,7 +38,7 @@ const semesters = [
     // Add more semesters as needed
 ];
 
-const SelectDatePopover = ({ onSubmit }) => {
+const SelectDatePopover = ({ localStorage, setUnits, units, course }) => {
     const [ticked, setTicked] = useState(false);
     const [open, setOpen] = useState(false);
     const [selectedYear, setSelectedYear] = useState("");
@@ -46,8 +46,17 @@ const SelectDatePopover = ({ onSubmit }) => {
 
     const handleSubmit = () => {
         if (selectedYear && selectedSemester) {
+            console.log(selectedSemester)
+            localStorage.addCourseCompleted(
+                course.code,
+                selectedYear,
+                selectedSemester
+            );
+            setUnits(
+                units +
+                    course.credit
+            );
             setOpen(false);
-            onSubmit({ year: selectedYear, semester: selectedSemester });
         }
     };
 
@@ -56,10 +65,20 @@ const SelectDatePopover = ({ onSubmit }) => {
             <PopoverTrigger asChild>
                 <Checkbox
                     className="mr-5"
+                    checked = {localStorage.containCourseCompleted(course.code)}
                     onCheckedChange={(checked) => {
                         if (checked) {
                             setOpen(true);
                         } else {
+                            localStorage.removeCourseCompleted(
+                                course.code,
+                                selectedYear,
+                                selectedSemester
+                            );
+                            setUnits(
+                                units -
+                                    course.credit
+                            );
                             setOpen(false);
                         }
                     }}
@@ -79,8 +98,8 @@ const SelectDatePopover = ({ onSubmit }) => {
                                     key={year.value}
                                     value={year.value}
                                     className="text-gray-700"
-                                    onSelect={(currentValue) => {
-                                        setSelectedYear(currentValue);
+                                    onSelect={() => {
+                                        setSelectedYear(year.value);
                                     }}
                                 >
                                     {year.label}
@@ -101,8 +120,8 @@ const SelectDatePopover = ({ onSubmit }) => {
                                 key={semester.value}
                                 value={semester.value}
                                 className="text-gray-700"
-                                onSelect={(currentValue) => {
-                                    setSelectedSemester(currentValue);
+                                onSelect={() => {
+                                    setSelectedSemester(semester.value);
                                 }}
                             >
                                 {semester.label}

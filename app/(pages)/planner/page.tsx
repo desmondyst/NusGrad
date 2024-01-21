@@ -4,7 +4,9 @@ import Planner from "@/app/(pages)/planner/components/planner";
 import { userTrackerDetails } from "@/app/types";
 import useLocalStorage from "@/components/hooks/useLocalStorage";
 import { Button } from "@/components/ui/button";
+import { courses } from "@/mock/data";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function PlannerPage() {
     const localStorage = useLocalStorage();
@@ -13,6 +15,15 @@ export default function PlannerPage() {
     const isEmptyObject = (obj: userTrackerDetails) => {
         return Object.keys(obj).length === 0;
     };
+
+    const [courses, setCourses] = useState([]);
+
+    const URL = `http://localhost:3000/api/course`;
+    useEffect(() => {
+        const courses = fetch(URL)
+            .then((response) => response.json())
+            .then((data) => setCourses(data));
+    }, []);
 
     return (
         <div className="h-screen">
@@ -36,7 +47,7 @@ export default function PlannerPage() {
                         <div className="mr-auto font-extrabold mb-5 tablet:text-xl xl:text-2xl">
                             {`${savedUserDetails.degree} (${savedUserDetails.intake})`}
                         </div>
-                        <Planner />
+                        <Planner courses={courses} />
                     </div>
                 </div>
             )}

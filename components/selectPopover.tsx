@@ -16,6 +16,7 @@ import {
     PopoverClose,
 } from "@/components/ui/popover";
 import AddIcon from "../public/orangeAdd.png";
+import { ScrollArea } from "./ui/scroll-area";
 
 const courses = [
     {
@@ -33,15 +34,12 @@ const courses = [
     // Add more courses as needed
 ];
 
-const SelectPopover = ({
-    onClick,
-    requirement = "Networking and Distributed Systems",
-}) => {
+const SelectPopover = ({ coursesCode, onClick }) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
 
     return (
-        <Popover open={open} onOpenChange={setOpen}>
+        <Popover open={open} onOpenChange={setOpen} modal={true}>
             <PopoverTrigger asChild>
                 <Button
                     type="button"
@@ -57,38 +55,37 @@ const SelectPopover = ({
                     Click here to add a course
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-1/8 tablet:w-96">
+            <PopoverContent className="w-1/8 tablet:w-96 h-64">
                 <Command className="space-y-2">
                     <div className="text-xs tablet:text-sm text-left">
-                        <div className="text-gray-700">
-                            Choosing a course for
-                        </div>
-                        <div className="text-gray-400">{requirement}</div>
+                        <div className="text-gray-700">Add a course</div>
                     </div>
                     <CommandInput placeholder="Search course..." />
                     <CommandEmpty>No course found.</CommandEmpty>
-                    <CommandGroup>
-                        <div className="border border-gray-400 rounded-xl divide-y-2 divide-gray-400">
-                            {courses.map((course) => (
-                                <CommandItem
-                                    key={course.value}
-                                    value={course.value}
-                                    className="text-gray-700"
-                                    onSelect={(currentValue) => {
-                                        setValue(
-                                            currentValue === value
-                                                ? ""
-                                                : currentValue
-                                        );
-                                        setOpen(false);
-                                        onClick(currentValue);
-                                    }}
-                                >
-                                    {course.label}
-                                </CommandItem>
-                            ))}
-                        </div>
-                    </CommandGroup>
+                    <ScrollArea>
+                        <CommandGroup>
+                            <div className="border border-gray-400 rounded-xl divide-y-2 divide-gray-400">
+                                {coursesCode?.map((course) => (
+                                    <CommandItem
+                                        key={course.value}
+                                        value={course.value}
+                                        className="text-gray-700"
+                                        onSelect={(currentValue) => {
+                                            setValue(
+                                                currentValue === value
+                                                    ? ""
+                                                    : currentValue
+                                            );
+                                            setOpen(false);
+                                            onClick(currentValue);
+                                        }}
+                                    >
+                                        {course.label}
+                                    </CommandItem>
+                                ))}
+                            </div>
+                        </CommandGroup>
+                    </ScrollArea>
                 </Command>
                 <PopoverClose className="text-orange rounded-2xl bg-transparent hover:bg-gray-100 absolute top-0 right-2 m-3">
                     X

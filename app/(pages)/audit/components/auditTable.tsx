@@ -8,7 +8,6 @@ export default function AuditTable() {
     const savedUserDetails = localStorage.saved_data["userDetails"];
     const degreeName = savedUserDetails["degree"];
     const batchName = savedUserDetails["intake"];
-
     const [requirementData, setRequirementData] = useState([]);
     const encodedDegreeName = encodeURIComponent(degreeName);
     const encodedBatchName = encodeURIComponent(batchName);
@@ -30,6 +29,7 @@ export default function AuditTable() {
                 <RequirementTable
                     key={requirement.id}
                     requirement={requirement}
+                    localStorage={localStorage}
                 />
             ))}
         </div>
