@@ -44,6 +44,12 @@ const useLocalStorage = create(
                 const currentSavedData = get().saved_data;
                 const currentSavedCompletedCourses =
                     currentSavedData["Completed"];
+                if (currentSavedCompletedCourses[AY] == undefined) {
+                    currentSavedCompletedCourses[AY] = {
+                        "Semester 1": [],
+                        "Semester 2": [],
+                    }
+                }
                 const updatedSemester = [
                     ...currentSavedCompletedCourses[AY][semester],
                     newCompletedCourse,

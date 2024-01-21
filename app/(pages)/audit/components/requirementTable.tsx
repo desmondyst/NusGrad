@@ -3,7 +3,8 @@ import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Progress } from "../../../../components/ui/progress";
 import SelectPopover from "../../../../components/selectPopover";
 import { useEffect, useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
+import SelectDatePopover from "@/components/selectDatePopover";
+
 export default function RequirementTable({ requirement, localStorage }) {
     const [courseData, setCourseData] = useState([]);
     const [units, setUnits] = useState(0);
@@ -57,34 +58,11 @@ export default function RequirementTable({ requirement, localStorage }) {
                                             {`${courseIndex + 1}. ${
                                                 course.code
                                             } ${course.name}`}
-                                            <Checkbox
-                                                className="mr-5"
-                                                checked={localStorage.containCourseCompleted(
-                                                    course.code
-                                                )}
-                                                onCheckedChange={(checked) => {
-                                                    if (checked) {
-                                                        localStorage.addCourseCompleted(
-                                                            course.code,
-                                                            "AY 2021 / 2022",
-                                                            "Semester 2"
-                                                        );
-                                                        setUnits(
-                                                            units +
-                                                                course.credit
-                                                        );
-                                                    } else {
-                                                        localStorage.removeCourseCompleted(
-                                                            course.code,
-                                                            "AY 2021 / 2022",
-                                                            "Semester 2"
-                                                        );
-                                                        setUnits(
-                                                            units -
-                                                                course.credit
-                                                        );
-                                                    }
-                                                }}
+                                            <SelectDatePopover
+                                                localStorage={localStorage}
+                                                setUnits={setUnits}
+                                                units={units}
+                                                course={course}
                                             />
                                         </TableCell>
                                     </TableRow>
