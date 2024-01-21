@@ -18,7 +18,7 @@ export default function PlannerPage() {
 
     const [courses, setCourses] = useState([]);
 
-    const URL = `http://localhost:3000/api/course`;
+    const URL = `${process.env.NEXT_PUBLIC_API_URL}/api/course`;
     useEffect(() => {
         const courses = fetch(URL)
             .then((response) => response.json())

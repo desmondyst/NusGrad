@@ -11,7 +11,7 @@ export default function AuditTable() {
     const [requirementData, setRequirementData] = useState([]);
     const encodedDegreeName = encodeURIComponent(degreeName);
     const encodedBatchName = encodeURIComponent(batchName);
-    const URL = `http://localhost:3000/api/degreeRequirement/${encodedDegreeName}/${encodedBatchName}`;
+    const URL = `${process.env.NEXT_PUBLIC_API_URL}/api/degreeRequirement/${encodedDegreeName}/${encodedBatchName}`;
     const getDegreeRequirement = async () => {
         const res = await fetch(URL);
         return res.json();
