@@ -13,7 +13,7 @@ const totalMC: number = 160;
 const RequirementCell = ({ localStorage, requirement, border }) => {
     const [courseData, setCourseData] = useState([]);
     const [units, setUnits] = useState(0);
-    const URL = `http://localhost:3000/api/requirementCourse/${requirement.id}`;
+    const URL = `${process.env.NEXT_PUBLIC_API_URL}/api/requirementCourse/${requirement.id}`;
     useEffect(() => {
         fetch(URL)
             .then((response) => response.json())
@@ -68,7 +68,7 @@ const SummaryTable = () => {
     const encodedBatchName = encodeURIComponent(batchName);
 
     const encodedDegreeName = encodeURIComponent(degreeName);
-    const URL = `http://localhost:3000/api/degreeRequirement/${encodedDegreeName}/${encodedBatchName}`;
+    const URL = `${process.env.NEXT_PUBLIC_API_URL}/api/degreeRequirement/${encodedDegreeName}/${encodedBatchName}`;
     const getDegreeRequirement = async () => {
         const res = await fetch(URL);
         return res.json();
@@ -84,9 +84,9 @@ const SummaryTable = () => {
     useEffect(() => {
         Promise.all(
             localStorage.saved_data["AllOfCompleted"].map((code) =>
-                fetch(`http://localhost:3000/api/course/${code}`).then(
-                    (response) => response.json()
-                )
+                fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/course/${code}`
+                ).then((response) => response.json())
             )
         ).then((data) => {
             setCourse(data);
